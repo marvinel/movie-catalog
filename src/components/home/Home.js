@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-//import Peliculas from '../peliculas/Peliculas';
+import Peliculas from '../peliculas/Peliculas';
 import { Link } from 'react-router-dom';
+
+import './Home.css';
 
 function Home(props) {
 
@@ -16,35 +18,42 @@ function Home(props) {
         axios.get(url)
             .then(res => {
                 setmovies(res.data.results)
+                console.log(res.data.results)
             });
     }
 
     useEffect(() => {
 
         //Comprobamos si hay alguna busqueda y si no mostramos los datos por defecto
-        if (props.match.params.query) {
-            search(SEARCH_API + props.match.params.query+"&language=es");
-        } else {
-            axios.get(MOVIES_API + apikey)
-                .then(res => {
-                    setmovies(res.data.results)
-                });
-        }
+
+        /*   if (props.match.params.query) {
+               search(SEARCH_API + props.match.params.query+"&language=es");
+           } else {*/
+        axios.get(MOVIES_API + apikey)
+            .then(res => {
+                setmovies(res.data.results)
+                console.log(res.data.results)
+            });
+        //  }
     }, []);
 
     return (
         <div className="home">
+
             <div className="movie-container">
                 {
                     movies.map(pelicula => (
+
                         <Link key={pelicula.id} className="movie-container" to={"/details/" + pelicula.id} >
-                          {  //<Peliculas {...pelicula} />
-}
+                            <Peliculas {...pelicula} />
+
                         </Link>
-                    ))
+
+
+                ))
                 }
             </div>
-          
+
         </div>
     );
 }
