@@ -4,7 +4,7 @@ import Rating from '@mui/material/Rating';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 //import Lottie from "lottie-react";
 //import Cargar from '../../assets/cargar.json';
-
+import { useParams } from "react-router-dom";
 import './Pelicula.css';
 
 
@@ -15,12 +15,12 @@ function Pelicula(props) {
     const IMAGE_API = "https://image.tmdb.org/t/p/w400";
 
     const [movie, setmovie] = useState([])
-
+    let params = useParams();
     
     //Obtenemos los detalles de la pelicula seleccionada mediante el id que llega por la url
     useEffect(() => {
-        console.log(props.id)
-       axios.get(DETAILS_API + props.id + apikey)
+        console.log( params.id)
+       axios.get(DETAILS_API + params.id + apikey)
             .then(res => {
                 
                 setmovie(res.data)

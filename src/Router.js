@@ -16,6 +16,10 @@ export default function Router(props) {
         <Route  path="home" element={<Home />} >
           <Route path=":query" element={<Home />} />
         </Route >
+        <Route  path="details" element={<Pelicula />} >
+          <Route path=":id" element={<Pelicula />} />
+        </Route >
+       
           {/* <Route exact path="/" elementt={Home} />
           <Route exact path="/home/:query?" component={Home} />
           <Route exact path="/details/:id" component={Pelicula} />
