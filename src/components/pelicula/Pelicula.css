@@ -5,7 +5,7 @@
     z-index: -1;
   
   
-    min-height: 88vh;
+    
     background: linear-gradient(to right, rgb(61, 61, 59) 150px, rgba(215, 214, 193, 0.555) 100%); 
     background-repeat: no-repeat;
     background-size: cover;
@@ -67,3 +67,9 @@
    
   }
   
+  .Recomendaciones{
+    border: black solid 1px;
+    height: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }

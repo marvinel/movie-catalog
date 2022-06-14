@@ -13,19 +13,28 @@ function Pelicula(props) {
     const DETAILS_API = "https://api.themoviedb.org/3/movie/";
     const apikey = "?api_key=b3b740f364ab0fa9fbc9b2b4dbb84e72&language=es";
     const IMAGE_API = "https://image.tmdb.org/t/p/w400";
+  
+
+ 
 
     const [movie, setmovie] = useState([])
+    const [recommendations, setRecommendations] = useState([])
     let params = useParams();
     
     //Obtenemos los detalles de la pelicula seleccionada mediante el id que llega por la url
     useEffect(() => {
-        console.log( params.id)
+      console.log("1")
        axios.get(DETAILS_API + params.id + apikey)
             .then(res => {
                 
                 setmovie(res.data)
             });
-    }, []);
+        axios.get(DETAILS_API+params.id+"/recommendations"+apikey)
+        .then(res=>{
+            console.log(res.data)
+            setRecommendations(res.data)
+        })
+    },[params]);
 
     //Cambiamos los minutos a horas
     const duracion = () =>{
@@ -46,13 +55,13 @@ function Pelicula(props) {
                 <div className="poster"
                     style={{
                         margin: 0,
-                        minHeight: '88vh',
+                        
                         backgroundImage: 'url(https://image.tmdb.org/t/p/original/' + movie.backdrop_path + ')',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundAttachment: 'fixed',
-                        position: 'absolute',
+                        position: 'relative',
                         width: '100%',
                         zIndex: -1
                     }} >
@@ -95,6 +104,18 @@ function Pelicula(props) {
                             </section>
                         </div>
                     </section>
+                </div>
+                <div className='Reco-container'>
+                    <h3>Recommendations</h3>
+                    <div className='Recomendaciones'>
+                        {
+                            recommendations.results.map((item)=>(
+                                <div key={item.id}>
+                                    {item.title}
+                                </div>
+                            ))
+                        }              
+                    </div>
                 </div>
             </div>
         );
