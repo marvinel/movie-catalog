@@ -1,75 +1,181 @@
-.poster:before{
-    content: "";
-   
-    
-    z-index: -1;
-  
-  
-    
-    background: linear-gradient(to right, rgb(61, 61, 59) 150px, rgba(215, 214, 193, 0.555) 100%); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  
-   
-    
-  }
-  
-  .detail-container{
-    display: flex;
-   
-    flex-wrap: wrap;
-    color: #fff;
-    text-decoration: none;
-    
-  }
-  .datail-contentp{
-    
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    position: relative;
-    width: 300px;
-    margin: 1rem;
-    flex-direction: row;
-    margin: 10px;
-    min-width: 200px;
-    
-  
-  
-  }
-  .datail-contentp img{
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    border-top: 15px;
-  }
-  .datail-content{
-    
-    border-radius: 10px;
-    position: relative;
-    width: 600px;
-    margin: 1rem;
-    flex-direction: row;
-    margin: 10px;
-    min-width: 200px;
-   padding: 50px 0;
-  }
-  .generos{
-    display: flex;
-    padding: 0px;
-    flex-wrap: wrap;
-    list-style: none;
-   
-  }
-  
-  .Recomendaciones{
-    border: black solid 1px;
-    height: 20px;
-    display: flex;
-    flex-wrap: wrap;
-  }
+.poster:before {
+  content: "";
+
+
+  z-index: -1;
+
+
+
+  background: linear-gradient(to right, rgb(61, 61, 59) 150px, rgba(215, 214, 193, 0.555) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+
+
+}
+
+.detail-container {
+  display: flex;
+
+  flex-wrap: wrap;
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.datail-contentp {
+
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+  width: 300px;
+  margin: 1rem;
+  flex-direction: row;
+  margin: 10px;
+  min-width: 200px;
+
+
+
+}
+
+.datail-contentp img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-top: 15px;
+}
+
+.datail-content {
+
+  border-radius: 10px;
+  position: relative;
+  width: 600px;
+  margin: 1rem;
+  flex-direction: row;
+  margin: 10px;
+  min-width: 200px;
+  padding: 50px 0;
+}
+
+.generos {
+  display: flex;
+  padding: 0px;
+  flex-wrap: wrap;
+  list-style: none;
+
+}
+
+.Reco-container {
+  background-color: #fff;
+  text-align: center;
+  width: 90%;
+  padding: 10px;
+  margin: 0px auto;
+}
+
+.Recomendaciones {
+
+  display: flex;
+  height: 200px;
+
+  -webkit-overflow-scrolling: touch;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+
+.Recomendaciones::-webkit-scrollbar {
+  width: 2px;
+  height: 8px;
+}
+
+.Recomendaciones::-webkit-scrollbar-thumb {
+  background: rgb(121, 121, 121);
+  border-radius: 20px;
+}
+
+.Recomendaciones::-webkit-scrollbar-thumb:hover {
+  background: rgb(18, 18, 18);
+
+}
+
+
+.Recomendaciones-item {
+
+  display: inline-block;
+  float: none;
+
+
+}
+
+.Recomendaciones-item .Imagen-content {
+  width: 250px;
+  height: 141px;
+}
+
+.Recomendaciones-item a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+
+  font-weight: 400;
+    font-size: 1em;
+
+}
+
+.Recomendaciones-item:hover .mini-info {
+  cursor: pointer;
+
+  visibility: visible;
+
+}
+
+.Recomendaciones-item img {
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 141px;
+  border-radius: 5%;
+}
+
+.mini-info {
+  visibility: hidden;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  top: -40px;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+}
+
+.Recomendaciones-item p{
+  margin: 0px;
+  width: 250px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* display: inline-block; */
+  padding-right: 20px;
+  font-weight: 600;
+  font-size: 1.1em;
+}

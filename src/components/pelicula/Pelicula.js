@@ -7,6 +7,8 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { useParams } from "react-router-dom";
 import './Pelicula.css';
 
+import { Link } from 'react-router-dom';
+import noimage from '../../assets/noimage.svg';
 
 function Pelicula(props) {
 
@@ -23,7 +25,7 @@ function Pelicula(props) {
     
     //Obtenemos los detalles de la pelicula seleccionada mediante el id que llega por la url
     useEffect(() => {
-      console.log("1")
+      
        axios.get(DETAILS_API + params.id + apikey)
             .then(res => {
                 
@@ -48,8 +50,19 @@ function Pelicula(props) {
         return (duracion+"h "+decimal+"m")
     }
 
+    const voteaverage = (vote) =>{
+       
+        return (Math.round((vote + Number.EPSILON) * 10) / 100)*100;
+    }
+    const verificarimagen = (item) =>{
+        if( item.backdrop_path){
+            return IMAGE_API + item.backdrop_path
+        }else{
+            return noimage;
+        }
+    }
     //Comprobamos que la información ya cargó
-    if (movie.title) {
+    if (movie.title &&  recommendations.results) {
         return (
             <div className="posterII">
                 <div className="poster"
@@ -110,8 +123,19 @@ function Pelicula(props) {
                     <div className='Recomendaciones'>
                         {
                             recommendations.results.map((item)=>(
-                                <div key={item.id}>
-                                    {item.title}
+                                <div className='Recomendaciones-item' key={item.id}>
+                                    
+                                   <div className='Imagen-content'>
+                                    <Link  className='sgt-peli' to={"/details/" + item.id}>
+                                    <img src={verificarimagen(item) } alt={item.title} />
+                                    <div className='mini-info'>
+                                        <span>{item.release_date}</span>
+                                        <span>{voteaverage(item.vote_average)}%</span>
+                                    </div>
+                                    </Link>
+                                    </div>
+                                    <p>{item.title}</p>
+                                   
                                 </div>
                             ))
                         }              
