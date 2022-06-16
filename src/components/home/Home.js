@@ -12,7 +12,7 @@ function Home(props) {
     const innerTheme = createTheme({
         palette: {
           primary: {
-            main:"#333333",
+            main:"rgb(193, 26, 26);",
           },
         },
       });
