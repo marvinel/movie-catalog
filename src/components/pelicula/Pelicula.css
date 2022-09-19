@@ -82,6 +82,9 @@
   border-radius: 10px;
 
 }
+.Reco-container h3{
+  color: white;
+}
 
 .Recomendaciones {
 
@@ -117,11 +120,15 @@
   float: none;
 
 
+
 }
 
 .Recomendaciones-item .Imagen-content {
   width: 250px;
   height: 141px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .Recomendaciones-item a {
@@ -154,21 +161,31 @@
 
 .mini-info {
   visibility: hidden;
-  background-color: rgba(255, 255, 255, 0.9);
-  position: relative;
-  top: -40px;
+ 
+  position: absolute;
+  bottom: 0;
   left: 0;
   height: 40px;
   width: 100%;
-  z-index: 1;
-  box-sizing: border-box;
-  padding-left: 10px;
-  padding-right: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
+  padding-right: 5px;
 
 
+}
+.mini-info p{
+  z-index: 1;
+  font-weight:normal;
+}
+.mini-info span{
+  background-color: rgba(201, 201, 201, 0.514);
+  filter: blur(1px);
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 
 .Recomendaciones-item p{

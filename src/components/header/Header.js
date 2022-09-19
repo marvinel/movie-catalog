@@ -5,7 +5,7 @@ import './Header.css';
 
 function Header() {
 
-  const IMAGE_API = "https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.png";
+
 
   const [buscar, setBuscar] = useState('')
 
@@ -24,7 +24,8 @@ function Header() {
     <header className="header-container">
     
       <div className="logo-header">
-        <img src={IMAGE_API} alt="logo" />
+        <img src={require('../../assets/film-slate.png')} alt="logo" />
+        <p>Marfilms</p>
       </div>
       <div className="search">
         <form onSubmit={handleOnSubmit}>

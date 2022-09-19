@@ -55,8 +55,9 @@ function Pelicula(props) {
         return (Math.round((vote + Number.EPSILON) * 10) / 100)*100;
     }
     const verificarimagen = (item) =>{
-        if( item.backdrop_path){
-            return IMAGE_API + item.backdrop_path
+        console.log(item)
+        if( item){
+            return item
         }else{
             return noimage;
         }
@@ -80,7 +81,7 @@ function Pelicula(props) {
                     }} >
                     <section className="detail-container">
                         <div className="datail-contentp">
-                            <img src={IMAGE_API + movie.poster_path} alt={movie.title} />
+                            <img src={verificarimagen(IMAGE_API + movie.poster_path) } alt={movie.title} />
                         </div>
                         <div className="datail-content">
                             <section >
@@ -127,10 +128,11 @@ function Pelicula(props) {
                                     
                                    <div className='Imagen-content'>
                                     <Link  className='sgt-peli' to={"/details/" + item.id}>
-                                    <img src={verificarimagen(item) } alt={item.title} />
+                                    <img src={verificarimagen(IMAGE_API + item.backdrop_path) } alt={item.title} />
                                     <div className='mini-info'>
-                                        <span>{item.release_date}</span>
-                                        <span>{voteaverage(item.vote_average)}%</span>
+                                        <p>{item.release_date}</p>
+                                        <p>{voteaverage(item.vote_average)}%</p>
+                                        <span></span>
                                     </div>
                                     </Link>
                                     </div>
