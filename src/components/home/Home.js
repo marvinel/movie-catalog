@@ -8,7 +8,16 @@ import { createTheme } from '@mui/material/styles';
 
 import './Home.css';
 import Button from '@mui/material/Button';
+
+import BeatLoader from "react-spinners/BeatLoader";
+
+
 function Home(props) {
+    const override = {
+        display: "block",
+        margin: "0 auto",
+       
+      };
     const innerTheme = createTheme({
         palette: {
           primary: {
@@ -22,20 +31,21 @@ function Home(props) {
 
     const [movies, setmovies] = useState([])
     const [page,setpage] = useState(1)
+    const [loading, setLoading] = useState(true)
     let params = useParams();
     //Obtenemos los datos buscados y los cambiamos por los que estaban
     const search = (url) => {
         axios.get(url)
             .then(res => {
                 setmovies(res.data.results)
-               
+                setLoading(false)
             });
     }
 
     useEffect(() => {
 
         //Comprobamos si hay alguna busqueda y si no mostramos los datos por defecto
-
+        setLoading(true)
            if (params.query) {
                search(SEARCH_API + params.query+"&language=es");
            } else {
@@ -49,7 +59,7 @@ function Home(props) {
                     
                     setmovies(movies => movies.concat(res.data.results)  )
                 }
-                
+                setLoading(false)
                
             });
           }
@@ -75,7 +85,10 @@ function Home(props) {
                 ))
                 }
             </div>
-            <Button className='btn-cargar' variant="contained" onClick={ cargarmas} theme={innerTheme} >Cargar mas</Button>
+            <BeatLoader  cssOverride={override}  loading={loading}  size={50} />
+            
+            
+            <Button style={{margin:'10px'}} className='btn-cargar' variant="contained" onClick={ cargarmas} theme={innerTheme} >Cargar mas</Button>
         </div>
     );
 }

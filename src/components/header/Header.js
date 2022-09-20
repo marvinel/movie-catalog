@@ -22,11 +22,14 @@ function Header() {
 
   return (
     <header className="header-container">
-    
+      <Link to="/home" style={{textDecoration:"none"}}>
       <div className="logo-header">
+    
         <img src={require('../../assets/film-slate.png')} alt="logo" />
         <p>Marfilms</p>
+        
       </div>
+      </Link>
       <div className="search">
         <form onSubmit={handleOnSubmit}>
           <input type="text" placeholder="Buscar" value={buscar} onChange={handleOnChange} />
@@ -34,9 +37,9 @@ function Header() {
         <SearchIcon className="icon" />
       </div>
       <ul className="navigation">
-        <li><a href="/home" >Home</a></li>
-        <li><Link to="/" >Login</Link></li>
-        <li><Link to="#" >About</Link></li>
+        <li><Link to="/home" >Home</Link></li>
+       
+       
       </ul>
 
 

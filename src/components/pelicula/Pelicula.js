@@ -9,67 +9,80 @@ import './Pelicula.css';
 
 import { Link } from 'react-router-dom';
 import noimage from '../../assets/noimage.svg';
-
+import BeatLoader from "react-spinners/BeatLoader";
 function Pelicula(props) {
 
     const DETAILS_API = "https://api.themoviedb.org/3/movie/";
     const apikey = "?api_key=b3b740f364ab0fa9fbc9b2b4dbb84e72&language=es";
     const IMAGE_API = "https://image.tmdb.org/t/p/w400";
-  
 
- 
+
+
 
     const [movie, setmovie] = useState([])
     const [recommendations, setRecommendations] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [loading2, setLoading2] = useState(true)
     let params = useParams();
-    
+
+    const override = {
+        display: "block",
+        margin: "0 auto",
+
+
+    };
     //Obtenemos los detalles de la pelicula seleccionada mediante el id que llega por la url
     useEffect(() => {
-      
-       axios.get(DETAILS_API + params.id + apikey)
+        setLoading(true)
+        setLoading2(true)
+        axios.get(DETAILS_API + params.id + apikey)
             .then(res => {
-                
+
                 setmovie(res.data)
+                setLoading(false)
+                
             });
-        axios.get(DETAILS_API+params.id+"/recommendations"+apikey)
-        .then(res=>{
-            console.log(res.data)
-            setRecommendations(res.data)
-        })
-    },[params]);
+        axios.get(DETAILS_API + params.id + "/recommendations" + apikey)
+            .then(res => {
+                console.log(res.data)
+                setRecommendations(res.data)
+                setLoading2(false)
+            })
+    }, [params]);
 
     //Cambiamos los minutos a horas
-    const duracion = () =>{
+    const duracion = () => {
         let duracion = movie.runtime / 60
-        let decimal= (duracion % 1)*60
-       
+        let decimal = (duracion % 1) * 60
+
 
         duracion = Math.floor(duracion)
         decimal = Math.floor(decimal)
-      
-        return (duracion+"h "+decimal+"m")
+
+        return (duracion + "h " + decimal + "m")
     }
 
-    const voteaverage = (vote) =>{
-       
-        return (Math.round((vote + Number.EPSILON) * 10) / 100)*100;
+    const voteaverage = (vote) => {
+
+        return (Math.round((vote + Number.EPSILON) * 10) / 100) * 100;
     }
-    const verificarimagen = (item) =>{
+    const verificarimagen = (item) => {
         console.log(item)
-        if( item){
-            return item
-        }else{
+        if (item) {
+            return IMAGE_API +item
+        } else {
             return noimage;
         }
     }
     //Comprobamos que la información ya cargó
-    if (movie.title &&  recommendations.results) {
+    
         return (
             <div className="posterII">
+                {movie.title ? 
                 <div className="poster"
                     style={{
                         margin: 0,
-                        
+
                         backgroundImage: 'url(https://image.tmdb.org/t/p/original/' + movie.backdrop_path + ')',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
@@ -81,7 +94,7 @@ function Pelicula(props) {
                     }} >
                     <section className="detail-container">
                         <div className="datail-contentp">
-                            <img src={verificarimagen(IMAGE_API + movie.poster_path) } alt={movie.title} />
+                            <img src={verificarimagen( movie.poster_path)} alt={movie.title} />
                         </div>
                         <div className="datail-content">
                             <section >
@@ -118,42 +131,44 @@ function Pelicula(props) {
                             </section>
                         </div>
                     </section>
-                </div>
+                </div>:
+                <BeatLoader  cssOverride={override}  loading={loading}  size={50} />
+
+}
                 <div className='Reco-container'>
                     <h3>Recommendations</h3>
+                    {recommendations.results ? 
                     <div className='Recomendaciones'>
                         {
-                            recommendations.results.map((item)=>(
+                            recommendations.results.map((item) => (
                                 <div className='Recomendaciones-item' key={item.id}>
-                                    
-                                   <div className='Imagen-content'>
-                                    <Link  className='sgt-peli' to={"/details/" + item.id}>
-                                    <img src={verificarimagen(IMAGE_API + item.backdrop_path) } alt={item.title} />
-                                    <div className='mini-info'>
-                                        <p>{item.release_date}</p>
-                                        <p>{voteaverage(item.vote_average)}%</p>
-                                        <span></span>
-                                    </div>
-                                    </Link>
+
+                                    <div className='Imagen-content'>
+                                        <Link className='sgt-peli' to={"/details/" + item.id}>
+                                            <img src={verificarimagen( item.backdrop_path)} alt={item.title} />
+                                            <div className='mini-info'>
+                                                <p>{item.release_date}</p>
+                                                <p>{voteaverage(item.vote_average)}%</p>
+                                                <span></span>
+                                            </div>
+                                        </Link>
                                     </div>
                                     <p>{item.title}</p>
-                                   
+
                                 </div>
                             ))
-                        }              
-                    </div>
+                         
+                        }
+                        {
+                            recommendations.results.length === 0 && <h3>NO HAY RECOMENDACIONES...</h3>
+                        }
+                    </div>:
+                     <BeatLoader  cssOverride={override}  loading={loading2}  size={50} />
+                    }
                 </div>
             </div>
         );
-    } else {
-        return (
-            <div>
-Cargando...
-               { //<Lottie animationData={Cargar} style={{ width: '300px', margin: '0 auto' }} />;
-    }
-            </div>
-        )
-    }
+
 }
 
 export default Pelicula;
