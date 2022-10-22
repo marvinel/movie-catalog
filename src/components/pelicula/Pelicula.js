@@ -44,7 +44,7 @@ function Pelicula(props) {
             });
         axios.get(DETAILS_API + params.id + "/recommendations" + apikey)
             .then(res => {
-                console.log(res.data)
+               
                 setRecommendations(res.data)
                 setLoading2(false)
             })
@@ -67,7 +67,7 @@ function Pelicula(props) {
         return (Math.round((vote + Number.EPSILON) * 10) / 100) * 100;
     }
     const verificarimagen = (item) => {
-        console.log(item)
+       
         if (item) {
             return IMAGE_API +item
         } else {
