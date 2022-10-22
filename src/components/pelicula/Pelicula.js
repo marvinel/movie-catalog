@@ -13,7 +13,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 function Pelicula(props) {
 
     const DETAILS_API = "https://api.themoviedb.org/3/movie/";
-    const apikey = "?api_key=b3b740f364ab0fa9fbc9b2b4dbb84e72&language=es";
+    const apikey = "?api_key=b3b740f364ab0fa9fbc9b2b4dbb84e72";
     const IMAGE_API = "https://image.tmdb.org/t/p/w400";
 
 
@@ -113,7 +113,7 @@ function Pelicula(props) {
                                     </ul>
                                 </div>
                                 <div>
-                                    <h3>{movie.vote_average} Puntuación</h3>
+                                    <h3>{movie.vote_average} Vote Average</h3>
                                     <Rating
                                         readOnly
                                         name="customized-empty"
@@ -125,7 +125,7 @@ function Pelicula(props) {
                                     />
                                 </div>
                                 <div>
-                                    <h3>Vista General</h3>
+                                    <h3>Overview</h3>
                                     <p>{movie.overview}</p>
                                 </div>
                             </section>

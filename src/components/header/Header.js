@@ -32,7 +32,7 @@ function Header() {
       </Link>
       <div className="search">
         <form onSubmit={handleOnSubmit}>
-          <input type="text" placeholder="Buscar" value={buscar} onChange={handleOnChange} />
+          <input type="text" placeholder="Search" value={buscar} onChange={handleOnChange} />
         </form>
         <SearchIcon className="icon" />
       </div>

@@ -27,7 +27,7 @@ function Home(props) {
       });
     const MOVIES_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&";
     const SEARCH_API = "https://api.themoviedb.org/3/search/movie?api_key=b3b740f364ab0fa9fbc9b2b4dbb84e72&query=";
-    const apikey = "api_key=b3b740f364ab0fa9fbc9b2b4dbb84e72&language=es";
+    const apikey = "api_key=b3b740f364ab0fa9fbc9b2b4dbb84e72";
 
     const [movies, setmovies] = useState([])
     const [page,setpage] = useState(1)
